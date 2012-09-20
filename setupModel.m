@@ -1,17 +1,36 @@
-function [model, biomassRxn] = setupModel(modelName,substrate,isAerobic,transhydrogenaseKnockout)
+function [model, biomassRxn] = setupModel(modelName,substrate,aerobicStr,transhydrogenaseKoStr)
 % setupModel
 % 
 % INPUTS
 %   modelName
 %   substrate
-%   isAerobic
-%   transhydrogenaseKnockout
+%   aerobicStr - 'aerobic' or 'anaerobic'
+%   transhydrogenaseKoStr - 'THKO' or 'noTHKO'
 % 
 % OUTPUTS
 %   model
 %   biomassRxn
 %
 % Zachary King 9/12/12
+
+    if strcmp(aerobicStr, 'aerobic')
+        isAerobic = true;
+    elseif strcmp(aerobicStr, 'anaerobic')
+        isAerobic = false;
+    else
+        fprintf('misspelled %s\n', aerobicStr)
+    end
+    if nargin < 4
+        transhydrogenaseKnockout = false;
+    else
+        if strcmp(transhydrogenaseKoStr, 'THKO')
+            transhydrogenaseKnockout = true;
+        elseif strcmp(transhydrogenaseKoStr, 'noTHKO')
+            transhydrogenaseKnockout = false;
+        else
+            fprintf('misspelled %s\n', transhydrogenaseKoStr)
+        end 
+    end 
     
     % load the model
     model = loadModelNamed(modelName);
