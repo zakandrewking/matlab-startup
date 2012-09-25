@@ -4,9 +4,12 @@ if isunix
     addpath_recurse('~/git',{'.svn','.git'});
 else
     cd('C:\Documents and Settings\z1king\My Documents\Dropbox\lab');
-    addpath('C:\Documents and Settings\z1king\My Documents\Dropbox\git\optSwap');
-    addpath('C:\Documents and Settings\z1king\My Documents\Dropbox\git\optSwap\helper');
-    addpath('C:\Documents and Settings\z1king\My Documents\Dropbox\git\optSwap\max-yield\');
+    git_path = 'C:\Documents and Settings\z1king\My Documents\Dropbox\git\'
+    addpath([git_path 'Matlab\']);
+    addpath([git_path 'optSwap\']);
+    addpath([git_path 'optSwap\helper\']);
+    addpath([git_path 'optSwap\max-yield\']);
 end
 
-setupCobraSolver;
+setupCobraSolver
+dbstop if error
