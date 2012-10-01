@@ -36,6 +36,9 @@ function [model, biomassRxn] = setupModel(modelName,substrate,aerobicStr,transhy
     model = loadModelNamed(modelName);
     biomassRxn = model.rxns(model.c~=0);
     
+    % set ATPM
+    % model = changeRxnBounds(model, 'ATPM', 8.37, 'b');
+    
     % prepare the model
     if transhydrogenaseKnockout
         % knock out th's
