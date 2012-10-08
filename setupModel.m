@@ -1,4 +1,5 @@
-function [model, biomassRxn] = setupModel(modelName,substrate,aerobicStr,transhydrogenaseKoStr)
+function [model, biomassRxn] = ...
+        setupModel(modelName,substrate,aerobicStr,transhydrogenaseKoStr,POR5Str)
 % setupModel
 % 
 % INPUTS
@@ -31,6 +32,9 @@ function [model, biomassRxn] = setupModel(modelName,substrate,aerobicStr,transhy
             fprintf('misspelled %s\n', transhydrogenaseKoStr)
         end 
     end 
+    if nargin < 5
+        POR5Str = 'POR5_irrev';
+    end
     
     % load the model
     model = loadModelNamed(modelName);
@@ -58,4 +62,14 @@ function [model, biomassRxn] = setupModel(modelName,substrate,aerobicStr,transhy
     % Swap reactions, keeping wild type dehydrogenases
     % [~, newNames] = modelSwap(model, dhRxns, true);
 
+    
+    % Make POR5 irreversible
+    if strcmp(POR5Str,'POR5_irrev')
+        model = changeRxnBounds(model, 'POR5', 0, 'l');
+        model.rev(ismember(model.rxns, 'POR5')) = 0;
+    elseif strcmp(POR5Str,'POR5_rev')
+    else
+        error(sprintf('misspelled %s', POR5Str));
+    end
+    
 end

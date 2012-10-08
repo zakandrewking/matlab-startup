@@ -5,6 +5,9 @@ function tw = setupTwitty
     credentials.AccessToken = '735579048-Iijijhb9LbOGi1l55VOK4Z0ylsgxjrelZf39tac0';
     credentials.AccessTokenSecret = 'U0kV7zuN7UJdUcgN4pVGgc4jya7AmS7spNwl6PR2o';
     
-    tw = twitty(credentials);
-
+    try
+        tw = twitty(credentials);
+    catch
+        tw = false;
+    end
 end
