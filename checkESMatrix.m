@@ -9,7 +9,7 @@ function [isValid, rxnsFound] = checkESMatrix(model)
         rxnsFound = model.rxns(unique(c));
         ignoreReactionsSel = findExcRxns(model);
         rxnSearchList = model.rxns(~ignoreReactionsSel);
-        ignoreReactions = model.rxns(ignoreReactionsSel)
+        ignoreReactions = model.rxns(ignoreReactionsSel);
         for i=1:length(rxnSearchList)
             if strfind(rxnSearchList{i}, 'Ec_biomass')
                 ignoreReactions = [ignoreReactions; rxnSearchList{i}];

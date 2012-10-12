@@ -14,6 +14,9 @@ function [model, biomassRxn] = ...
 %
 % Zachary King 9/12/12
 
+
+    
+    aerobicStr = lower(aerobicStr);
     if strcmp(aerobicStr, 'aerobic')
         isAerobic = true;
     elseif strcmp(aerobicStr, 'anaerobic')
@@ -24,17 +27,21 @@ function [model, biomassRxn] = ...
     if nargin < 4
         transhydrogenaseKnockout = false;
     else
-        if strcmp(transhydrogenaseKoStr, 'THKO')
+        transhydrogenaseKoStr = lower(transhydrogenaseKoStr);
+        if strcmp(transhydrogenaseKoStr, 'thko')
             transhydrogenaseKnockout = true;
-        elseif strcmp(transhydrogenaseKoStr, 'noTHKO')
+        elseif strcmp(transhydrogenaseKoStr, 'nothko')
             transhydrogenaseKnockout = false;
         else
             fprintf('misspelled %s\n', transhydrogenaseKoStr)
         end 
     end 
     if nargin < 5
-        POR5Str = 'POR5_irrev';
+        POR5Str = 'por5_irrev';
+    else
+        POR5Str = lower(POR5Str);
     end
+    
     
     % load the model
     model = loadModelNamed(modelName);
@@ -64,10 +71,10 @@ function [model, biomassRxn] = ...
 
     
     % Make POR5 irreversible
-    if strcmp(POR5Str,'POR5_irrev')
+    if strcmp(POR5Str,'por5_irrev')
         model = changeRxnBounds(model, 'POR5', 0, 'l');
         model.rev(ismember(model.rxns, 'POR5')) = 0;
-    elseif strcmp(POR5Str,'POR5_rev')
+    elseif strcmp(POR5Str,'por5_rev')
     else
         error(sprintf('misspelled %s', POR5Str));
     end
