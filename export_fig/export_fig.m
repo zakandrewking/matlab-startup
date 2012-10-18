@@ -197,7 +197,7 @@ if isbitmap(options) && magnify ~= 1
         set(fontu, 'FontUnits', 'points');
     end
 end
-% MATLAB "feature": axes limits can change when printing
+% MATLAB "feature": axes limits and tick marks can change when printing
 Hlims = findall(fig, 'Type', 'axes');
 if ~cls
     % Record the old axes limit and tick modes
@@ -288,7 +288,7 @@ if isbitmap(options)
             % Compute the resolution
             res = options.magnify * get(0, 'ScreenPixelsPerInch') / 25.4e-3;
             % Save the png
-            imwrite(A, [options.name '.png'], 'Alpha', alpha, 'ResolutionUnit', 'meter', 'XResolution', res, 'YResolution', res);
+            imwrite(A, [options.name '.png'], 'Alpha', double(alpha), 'ResolutionUnit', 'meter', 'XResolution', res, 'YResolution', res);
             % Clear the png bit
             options.png = false;
         end
