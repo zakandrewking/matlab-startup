@@ -57,7 +57,9 @@ function [model, biomassRxn] = ...
         model = changeRxnBounds(model, thRxns, 0, 'b');
     end
     model = changeRxnBounds(model, 'EX_glc(e)', 0, 'l');
-    model = changeRxnBounds(model, substrate, -20, 'l');
+    if ~strcmp(substrate,'none')
+        model = changeRxnBounds(model, substrate, -20, 'l');
+    end
     if isAerobic
         model = changeRxnBounds(model, 'EX_o2(e)', -20, 'l');
     else

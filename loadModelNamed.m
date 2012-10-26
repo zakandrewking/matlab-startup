@@ -21,7 +21,7 @@ function model = loadModelNamed(modelName)
     try
         model = load([modelName '.mat']);
     catch
-        model = readCbModel(modelName,1000,'SBML'); 
+        model = readCbModel(['/Users/zaking/Dropbox/git/Matlab/models/' modelName],1000,'SBML'); 
         save([modelName '.mat'],'-struct','model');
     end
 

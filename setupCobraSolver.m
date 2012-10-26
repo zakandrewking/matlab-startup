@@ -1,13 +1,22 @@
 function solverOK = setupCobraSolver
     solverOK = false;
-    if exist('gurobi_mex','file')
+    if exist('gurobi.m','file')
+        setenv 'GUROBI_HOME' '/Library/gurobi501/mac64'
+        setenv([getenv('PATH') ':/Library/gurobi501/mac64/bin'])
+        setenv 'GRB_LICENSE_FILE' '/Library/gurobi501/gurobi.lic'
+        solverOK = changeCobraSolver('gurobi5','LP');
+        solver = 'gurobi5';
+    end
+    if ~solverOK && exist('gurobi_mex','file')
         setenv 'GUROBI_HOME' '/Library/gurobi461/mac64'
         setenv([getenv('PATH') ':/Library/gurobi461/mac64/bin'])
-        setenv 'LD_LIBRARY_PATH' '/Library/gurobi461/mac64/lib:/usr/local/lib'
-        setenv 'DYLD_LIBRARY_PATH' '/usr/local/lib'
+        % setenv 'LD_LIBRARY_PATH' '/Library/gurobi461/mac64/lib:/usr/local/lib'
+        % setenv 'DYLD_LIBRARY_PATH' '/usr/local/lib'
         setenv 'GRB_LICENSE_FILE' '/Library/gurobi461/gurobi.lic'
         solverOK = changeCobraSolver('gurobi','LP');
-
+        solver = 'gurobi';
+    end
+    if solverOK
         % test gurobi
         try
             model = loadModelNamed('iAF');
@@ -21,7 +30,6 @@ function solverOK = setupCobraSolver
                 disp('GUROBI_mex could not run. Unknown error');
             end
         end
-        solver = 'gurobi';
     end
     if ~solverOK && exist('tomRun.m','file')
         solverOK = changeCobraSolver('tomlab_cplex','LP');

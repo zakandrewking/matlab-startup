@@ -1,7 +1,7 @@
 % check if we're on mac or pc
 if isunix
     cd('~/Dropbox/lab/');
-    addpath_recurse('~/git',{'.svn','.git'});
+    addpath_recurse('~/Dropbox/git',{'.svn','.git'});
 else
     cd('C:\Documents and Settings\z1king\My Documents\Dropbox\lab');
     git_path = 'C:\Documents and Settings\z1king\My Documents\Dropbox\git\'
@@ -12,4 +12,4 @@ else
 end
 
 setupCobraSolver
-dbstop if error
+% dbstop if error
