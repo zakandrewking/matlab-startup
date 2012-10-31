@@ -16,6 +16,10 @@ function [newModel, newNames, coupling] = modelSwap(model,dhRxns,keepWtRxn)
 % 
 % Zachary King 9/6/2012
     
+    if isempty(dhRxns)
+        newModel = model; newNames = []; coupling = [];
+        return
+    end
     if ~iscell(dhRxns)
         dhRxns = {dhRxns};
     end
