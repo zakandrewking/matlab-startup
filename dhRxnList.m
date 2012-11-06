@@ -32,7 +32,7 @@ function list = dhRxnList(count)
                 'ME1';
                 'LDH_D';
                 'LCARR';};
-    elseif strcmp(count,'manual')
+    elseif count==30
                list = {'3OAR100';
                 '3OAR40';
                 '3OAR60';
