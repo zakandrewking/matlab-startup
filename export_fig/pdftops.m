@@ -103,5 +103,5 @@ function good = check_xpdf_path(path)
 [good message] = system(sprintf('"%s" -h', path));
 % system returns good = 1 even when the command runs
 % Look for something distinct in the help text
-good = ~isempty(strfind(message, 'PostScript'));
+good = ~isempty(strfind(message, 'pdftops version'));
 return
