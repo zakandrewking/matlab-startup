@@ -1,11 +1,17 @@
 function solverOK = setupCobraSolver
     solverOK = false;
-    if exist('gurobi.m','file')
-        setenv 'GUROBI_HOME' '/Library/gurobi501/mac64'
-        setenv([getenv('PATH') ':/Library/gurobi501/mac64/bin'])
-        setenv 'GRB_LICENSE_FILE' '/Library/gurobi501/gurobi.lic'
-        solverOK = changeCobraSolver('gurobi5','LP');
-        solver = 'gurobi5';
+    gurobi_matlab_path = '/Library/gurobi501/mac64/matlab/';
+    if exist([gurobi_matlab_path 'gurobi.m'],'file')
+        try
+            addpath(gurobi_matlab_path)
+            setenv 'PATH' [getenv('PATH') ':/Library/gurobi501/mac64/bin']
+            setenv 'GUROBI_HOME' '/Library/gurobi501/mac64'
+            setenv 'GRB_LICENSE_FILE' '/Library/gurobi501/gurobi.lic'
+            solverOK = changeCobraSolver('gurobi5','LP');
+            solver = 'gurobi5';
+        catch
+            solverOK = false;
+        end
     end
     if ~solverOK && exist('gurobi_mex','file')
         setenv 'GUROBI_HOME' '/Library/gurobi461/mac64'
