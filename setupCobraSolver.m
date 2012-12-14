@@ -11,6 +11,7 @@ function solverOK = setupCobraSolver
             solver = 'gurobi5';
         catch
             solverOK = false;
+            disp('error setting up gurobi 5')
         end
     end
     if ~solverOK && exist('gurobi_mex','file')
