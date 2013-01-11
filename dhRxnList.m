@@ -64,6 +64,52 @@ function list = dhRxnList(count)
                 'ME1';
                 'LDH_D';
                 'LCARR';};
+    elseif count==22
+        list = {'ACALD';
+                'ALCD2x';
+		'ASAD';
+                'DHDPRy';
+                'FADRx';
+                'G6PDH2r';
+                'GAPD';
+                'GLUDy';
+                'GND';
+                'HSDy';
+                'ICDHyr';
+                'IPMD';
+                'KARA1';
+		'MDH'; % removed becuase of loop result, for yield
+		'MTHFD';
+		'NADH16pp';
+		'PDH';
+		'PGCD';
+                'SHK3Dr';
+		'ME1'; %*
+		'LDH_D'; %*
+		'LCARR';}; %*
+    elseif count==21
+        list = {'ACALD';
+                'ALCD2x';
+		'ASAD';
+                'DHDPRy';
+                'FADRx';
+                'G6PDH2r';
+                'GAPD';
+                'GLUDy';
+                'GND';
+                'HSDy';
+                'ICDHyr';
+                'IPMD';
+                'KARA1';
+        % 'MDH'; % removed becuase of loop result, for yield
+		'MTHFD';
+		'NADH16pp';
+		'PDH';
+		'PGCD';
+                'SHK3Dr';
+		'ME1'; %*
+		'LDH_D'; %*
+		'LCARR';}; %*
     else
         error('bad count')
     end

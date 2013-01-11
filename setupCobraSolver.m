@@ -4,7 +4,7 @@ function solverOK = setupCobraSolver
     if exist([gurobi_matlab_path 'gurobi.m'],'file')
         try
             addpath(gurobi_matlab_path)
-            setenv 'PATH' [getenv('PATH') ':/Library/gurobi501/mac64/bin']
+            setenv('PATH',[getenv('PATH'),':/Library/gurobi501/mac64/bin'])
             setenv 'GUROBI_HOME' '/Library/gurobi501/mac64'
             setenv 'GRB_LICENSE_FILE' '/Library/gurobi501/gurobi.lic'
             solverOK = changeCobraSolver('gurobi5','LP');
@@ -16,7 +16,7 @@ function solverOK = setupCobraSolver
     end
     if ~solverOK && exist('gurobi_mex','file')
         setenv 'GUROBI_HOME' '/Library/gurobi461/mac64'
-        setenv([getenv('PATH') ':/Library/gurobi461/mac64/bin'])
+        setenv('PATH', [getenv('PATH') ':/Library/gurobi461/mac64/bin'])
         % setenv 'LD_LIBRARY_PATH' '/Library/gurobi461/mac64/lib:/usr/local/lib'
         % setenv 'DYLD_LIBRARY_PATH' '/usr/local/lib'
         setenv 'GRB_LICENSE_FILE' '/Library/gurobi461/gurobi.lic'
