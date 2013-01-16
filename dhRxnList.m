@@ -33,7 +33,7 @@ function list = dhRxnList(count)
                 'LDH_D';
                 'LCARR';};
     elseif count==30
-               list = {'3OAR100';
+        list = {'3OAR100';
                 '3OAR40';
                 '3OAR60';
                 '3OAR80';
@@ -60,14 +60,14 @@ function list = dhRxnList(count)
                 'PDH';
                 'PGCD';
                 'SHK3Dr';
-                % 'TRSARr'; removed because of loop result
+        % 'TRSARr'; removed because of loop result
                 'ME1';
                 'LDH_D';
                 'LCARR';};
     elseif count==22
         list = {'ACALD';
                 'ALCD2x';
-		'ASAD';
+                'ASAD';
                 'DHDPRy';
                 'FADRx';
                 'G6PDH2r';
@@ -78,38 +78,38 @@ function list = dhRxnList(count)
                 'ICDHyr';
                 'IPMD';
                 'KARA1';
-		'MDH'; % removed becuase of loop result, for yield
-		'MTHFD';
-		'NADH16pp';
-		'PDH';
-		'PGCD';
+                'MDH'; % removed becuase of loop result, for coupled
+                'MTHFD';
+                'NADH16pp';
+                'PDH';
+                'PGCD';
                 'SHK3Dr';
-		'ME1'; %*
-		'LDH_D'; %*
-		'LCARR';}; %*
-    elseif count==21
+                'ME1'; %*
+                'LDH_D'; %*
+                'LCARR';}; %*
+    elseif count==20
         list = {'ACALD';
                 'ALCD2x';
-		'ASAD';
+                'ASAD';
                 'DHDPRy';
                 'FADRx';
                 'G6PDH2r';
-                'GAPD';
-                'GLUDy';
+        % 'GAPD';
+        % 'GLUDy';% removed becuase of loop result, for yield
                 'GND';
                 'HSDy';
                 'ICDHyr';
                 'IPMD';
                 'KARA1';
-        % 'MDH'; % removed becuase of loop result, for yield
-		'MTHFD';
-		'NADH16pp';
-		'PDH';
-		'PGCD';
+                'MDH'; 
+                'MTHFD';
+                'NADH16pp';
+                'PDH';
+                'PGCD';
                 'SHK3Dr';
-		'ME1'; %*
-		'LDH_D'; %*
-		'LCARR';}; %*
+                'ME1'; %*
+                'LDH_D'; %*
+                'LCARR';}; %*
     else
         error('bad count')
     end
