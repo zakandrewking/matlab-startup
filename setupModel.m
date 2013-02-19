@@ -65,20 +65,28 @@ function [model, biomassRxn] = ...
     else
         model = changeRxnBounds(model, 'EX_o2(e)', 0, 'l'); 
         % BAD REACTIONS, DOWN BOY
-        model = changeRxnBounds(model, {'CAT';'SPODM';'SPODMpp'}, [0;0;0], 'b');
+        if strcmp(modelName,'iND750')
+            necessary_ex = {'EX_ergst(e)', 'EX_zymst(e)', 'EX_hdcea(e)', ...
+                            'EX_ocdca(e)', 'EX_ocdcea(e)', ...
+                            'EX_ocdcya(e)'};
+            % 'EX_k(e)','EX_na1(e)', 'EX_co2(e)'};
+            model = changeRxnBounds(model, necessary_ex, -1000, 'l');
+            model = changeRxnBounds(model, necessary_ex, 1000, 'u'); 
+        else
+            model = changeRxnBounds(model, {'CAT';'SPODM';'SPODMpp'}, [0;0;0], 'b');
+        end
         % can make oxygen...turn off for anaerobic simulations 
     end
-    % Swap reactions, keeping wild type dehydrogenases
-    % [~, newNames] = modelSwap(model, dhRxns, true);
-
     
     % Make POR5 irreversible
-    if strcmp(POR5Str,'por5_irrev')
-        model = changeRxnBounds(model, 'POR5', 0, 'l');
-        model.rev(ismember(model.rxns, 'POR5')) = 0;
-    elseif strcmp(POR5Str,'por5_rev')
-    else
-        error(sprintf('misspelled %s', POR5Str));
+    if ~strcmp(modelName,'iND750')
+        if strcmp(POR5Str,'por5_irrev') 
+            model = changeRxnBounds(model, 'POR5', 0, 'l');
+            model.rev(ismember(model.rxns, 'POR5')) = 0;
+        elseif strcmp(POR5Str,'por5_rev')
+        else
+            error(sprintf('misspelled %s', POR5Str));
+        end
     end
     
 end

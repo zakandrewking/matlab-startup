@@ -15,6 +15,8 @@ function model = loadModelNamed(modelName)
     elseif strcmp(modelName,'iAF1260b')
         modelName = 'Ec_iAF1260_flux1';
         addRxns = true;
+    elseif strcmp(modelName,'iND750')
+        modelName = 'Sc_iND750_flux1';
     end
 
 

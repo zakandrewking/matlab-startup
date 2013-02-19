@@ -2,6 +2,8 @@
 if isunix
     cd('~/Dropbox/lab/');
     addpath_recurse('~/Dropbox/git',{'.svn','.git'});
+    % libsbml
+    addpath('/usr/local/lib/')
 else
     cd('C:\Documents and Settings\z1king\My Documents\Dropbox\lab');
     git_path = 'C:\Documents and Settings\z1king\My Documents\Dropbox\git\'

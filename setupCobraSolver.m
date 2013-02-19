@@ -1,12 +1,13 @@
 function solverOK = setupCobraSolver
     solverOK = false;
-    gurobi_matlab_path = '/Library/gurobi501/mac64/matlab/';
+    gurobi_version = '510';
+    gurobi_matlab_path = ['/Library/gurobi' gurobi_version '/mac64/matlab/'];
     if exist([gurobi_matlab_path 'gurobi.m'],'file')
         try
-            addpath(gurobi_matlab_path)
-            setenv('PATH',[getenv('PATH'),':/Library/gurobi501/mac64/bin'])
-            setenv 'GUROBI_HOME' '/Library/gurobi501/mac64'
-            setenv 'GRB_LICENSE_FILE' '/Library/gurobi501/gurobi.lic'
+            addpath(gurobi_matlab_path);
+            setenv('PATH',[getenv('PATH'),':/Library/gurobi' gurobi_version '/mac64/bin']);
+            setenv('GUROBI_HOME', ['/Library/gurobi' gurobi_version '/mac64']);
+            setenv('GRB_LICENSE_FILE', ['/Library/gurobi' gurobi_version '/gurobi.lic']);
             solverOK = changeCobraSolver('gurobi5','LP');
             solver = 'gurobi5';
         catch
@@ -30,7 +31,7 @@ function solverOK = setupCobraSolver
             soln = optimizeCbModel(model);
         catch err
             solverOK = 0;
-            str = 'Error: could not create environment. Please make sure that GUROBI has a license and been validated.';
+            str = 'Please ensure the license is correctly installed by running the Gurobi interactive shell.';
             if (strcmp(err.message,str))
                 disp('GUROBI_mex could not run. Check license');
             else

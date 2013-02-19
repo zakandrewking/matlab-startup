@@ -64,7 +64,7 @@ function list = dhRxnList(count)
                 'ME1';
                 'LDH_D';
                 'LCARR';};
-    elseif count==22
+    elseif count==21
         list = {'ACALD';
                 'ALCD2x';
                 'ASAD';
@@ -78,7 +78,7 @@ function list = dhRxnList(count)
                 'ICDHyr';
                 'IPMD';
                 'KARA1';
-                'MDH'; % removed becuase of loop result, for coupled
+        % 'MDH'; % removed becuase of loop result, for coupled
                 'MTHFD';
                 'NADH16pp';
                 'PDH';
