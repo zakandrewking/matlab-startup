@@ -18,14 +18,14 @@ function model = loadModelNamed(modelName)
     elseif strcmp(modelName,'iND750')
         modelName = 'Sc_iND750_flux1';
     elseif strcmp(modelName,'iJO-h')
-        modelName = 'iJO1366-heterogenous-pathways';
+        modelName = 'iJO1366-heterologous-pathways';
     end
 
 
     try
         model = load([modelName '.mat']);
     catch
-        model = readCbModel(['/Users/zaking/Dropbox/git/Matlab/models/' modelName],1000,'SBML'); 
+        model = readCbModel(['/Users/zaking/repos/matlab-startup/models/' modelName],1000,'SBML'); 
         save([modelName '.mat'],'-struct','model');
     end
 
