@@ -1,6 +1,6 @@
 function solverOK = setupCobraSolver
     solverOK = false;
-    gurobi_version = '510';
+    gurobi_version = '560';
     gurobi_matlab_path = ['/Library/gurobi' gurobi_version '/mac64/matlab/'];
     if exist([gurobi_matlab_path 'gurobi.m'],'file')
         try
@@ -27,7 +27,7 @@ function solverOK = setupCobraSolver
     if solverOK
         % test gurobi
         try
-            model = loadModelNamed('iJO');
+            model = loadModelNamed('iJO1366');
             soln = optimizeCbModel(model);
         catch err
             solverOK = 0;

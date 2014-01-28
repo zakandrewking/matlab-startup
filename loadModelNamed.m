@@ -12,6 +12,8 @@ function model = loadModelNamed(modelName)
         modelName = 'Ec_iAF1260_flux1';
     elseif strcmp(modelName,'iJO')
         modelName = 'iJO1366';
+    elseif strcmp(modelName,'iMM')
+        modelName = 'iMM904';
     elseif strcmp(modelName,'iAF1260b')
         modelName = 'Ec_iAF1260_flux1';
         addRxns = true;
@@ -19,14 +21,18 @@ function model = loadModelNamed(modelName)
         modelName = 'Sc_iND750_flux1';
     elseif strcmp(modelName,'iJO-h')
         modelName = 'iJO1366-heterologous-pathways';
+    elseif strcmp(modelName,'yeast6')
+        modelName = 'yeast_6.06_cobra';
+    elseif strcmp(modelName,'yeast7')
+        modelName = 'yeast_7.00_cobra';
     end
 
 
     try
-        model = load([modelName '.mat']);
+        model = load(['/Users/zaking/models/' modelName '.mat']);
     catch
-        model = readCbModel(['/Users/zaking/repos/matlab-startup/models/' modelName],1000,'SBML'); 
-        save([modelName '.mat'],'-struct','model');
+        model = readCbModel(['/Users/zaking/models/' modelName],1000,'SBML'); 
+        save(['/Users/zaking/models/' modelName '.mat'],'-struct','model');
     end
 
     if addRxns

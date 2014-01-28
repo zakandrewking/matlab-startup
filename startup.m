@@ -2,8 +2,9 @@
 if isunix
     cd('~/repos/');
     addpath_recurse('~/repos/matlab-startup',{'.svn','.git'});
+    addpath('~/models');
     addpath_recurse('~/sharedrepos/cobratoolbox',{'.svn','.git'});
-    % addpath_recurse('~/repos/optSwap',{'.svn','.git'});
+    addpath_recurse('~/repos/optSwap',{'.svn','.git'});
     % addpath_recurse('~/lab/software/rBioNet')
     % libsbml
     addpath('/usr/local/lib/')
