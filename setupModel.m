@@ -115,7 +115,7 @@ function [model, biomassRxn] = ...
                 model = changeRxnBounds(model, necessary_ex, 1000, 'u');
             end
         elseif strcmp(modelName, 'ecoli_core_model')
-        else
+        elseif strcmp(modelName, 'iJO1366')
             model = changeRxnBounds(model, {'CAT';'SPODM';'SPODMpp'}, [0;0;0], 'b');
         end
         % can make oxygen...turn off for anaerobic simulations
